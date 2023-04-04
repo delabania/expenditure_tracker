@@ -8,4 +8,8 @@ type Database interface {
 	getPerson(id int64) (Person, error)
 	getExpenditure(id int64) (Expenditure, error)
 	getSettlement(id int64) (Settlement, error)
+
+	getAllPersons() ([]Person, error)
+	getAllExpenditures() ([]Expenditure, error)
+	getAllSettlements() ([]Settlement, error)
 }

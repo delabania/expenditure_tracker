@@ -49,3 +49,15 @@ func (db *InMemoryDatabase) getSettlement(id int64) (Settlement, error) {
 	}
 	return Settlement{}, errors.New("settlement not found")
 }
+
+func (db *InMemoryDatabase) getAllPersons() ([]Person, error) {
+	return db.Persons, nil
+}
+
+func (db *InMemoryDatabase) getAllExpenditures() ([]Expenditure, error) {
+	return db.Expenditures, nil
+}
+
+func (db *InMemoryDatabase) getAllSettlements() ([]Settlement, error) {
+	return db.Settlements, nil
+}
