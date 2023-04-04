@@ -1,4 +1,4 @@
-package expenditure_tracker
+package db
 
 import (
 	"time"
