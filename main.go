@@ -7,8 +7,8 @@ import (
 
 func main() {
 	router := gin.Default()
-	env = &Env{db: db.InMemoryDatabase()}
-	router.GET("/expenditures")
+	env := &Env{db: &db.InMemoryDatabase{}}
+	router.GET("/expenditures", env.GetExpenditures)
 
 	router.Run("localhost:8080")
 }

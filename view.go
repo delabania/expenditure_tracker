@@ -12,9 +12,10 @@ type Env struct {
 }
 
 func (e *Env) GetExpenditures(c *gin.Context) {
-	// read all expenditures from db
-	// return them as json
-
-	e.db.GetAllExpenditures()
-	c.IndentedJSON(http.StatusOK, gin.H{})
+	expenditures, err := e.db.GetAllExpenditures()
+	if err != nil {
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.IndentedJSON(http.StatusOK, expenditures)
 }
