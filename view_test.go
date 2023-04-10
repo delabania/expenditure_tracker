@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"expenditure_tracker/db"
 	"github.com/gin-gonic/gin"
@@ -58,6 +59,63 @@ func TestEnv_GetExpenditures(t *testing.T) {
 			_ = json.Unmarshal(writer.Body.Bytes(), &expenditures)
 
 			assert.Equal(t, tt.want, expenditures)
+		})
+	}
+}
+
+func TestEnv_AddExpenditure(t *testing.T) {
+	type fields struct {
+		db          db.Database
+		expenditure db.Expenditure
+	}
+	type args struct {
+		c *gin.Context
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+	}{
+		{
+			"test add expenditure",
+			fields{
+				db: &db.InMemoryDatabase{
+					Persons:      []db.Person{},
+					Expenditures: []db.Expenditure{},
+					Settlements:  []db.Settlement{},
+				}, expenditure: db.Expenditure{
+					Description: "Shopping",
+					Amount:      100,
+					SplitRatio:  0.5,
+					Date:        time.Date(2022, 9, 1, 16, 0, 0, 0, time.UTC),
+				},
+			}, args{c: &gin.Context{}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			e := &Env{
+				db: tt.fields.db,
+			}
+			writer := httptest.NewRecorder()
+
+			expenditure, _ := json.Marshal(tt.fields.expenditure)
+			request, err := http.NewRequest(
+				"POST", "/expenditures/add", bytes.NewBuffer(expenditure))
+			if err != nil {
+				t.Fatal(err)
+			}
+			router := gin.Default()
+			router.POST("/expenditures/add", e.AddExpenditure)
+			router.ServeHTTP(writer, request)
+
+			assert.Equal(t, http.StatusCreated, writer.Code)
+			var id int64
+			_ = json.Unmarshal(writer.Body.Bytes(), &id)
+			assert.Equal(t, int64(0), id)
+
+			expenditureReturned, _ := e.db.GetExpenditure(id)
+			assert.Equal(t, tt.fields.expenditure, expenditureReturned)
 		})
 	}
 }
