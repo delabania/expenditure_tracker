@@ -1,4 +1,4 @@
-package expenditure_tracker
+package main
 
 import "github.com/gin-gonic/gin"
 

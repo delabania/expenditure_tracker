@@ -1,4 +1,4 @@
-package expenditure_tracker
+package main
 
 import (
 	"net/http"
