@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    let expenditures = useState([])
+    useEffect(() => {
+        fetch("http://localhost:8080/expenditures")
+            .then((response) => response.json())
+            .then(data => {
+                expenditures = data;
+                console.log(data);
+            })
+    }, [])
+    return (
+        <div className="App">
+            <h1>Expenditures</h1>
+            <ul>
+                {expenditures.map((expenditure) => (
+                    <li>
+                        {expenditure}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }
 
 export default App;
