@@ -1,9 +1,9 @@
 package db
 
 type Database interface {
-	SavePerson(person Person) error
-	SaveExpenditure(expenditure Expenditure) error
-	SaveSettlement(settlement Settlement) error
+	SavePerson(person Person) (int64, error)
+	SaveExpenditure(expenditure Expenditure) (int64, error)
+	SaveSettlement(settlement Settlement) (int64, error)
 
 	GetPerson(id int64) (Person, error)
 	GetExpenditure(id int64) (Expenditure, error)

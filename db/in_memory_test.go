@@ -116,9 +116,9 @@ func TestInMemoryDatabase_saveExpenditure(t *testing.T) {
 		{
 			"test expenditure is saved",
 			fields{[]Person{}, []Expenditure{}, []Settlement{}},
-			args{Expenditure{ID: 1}},
+			args{Expenditure{}},
 			false,
-			[]Expenditure{{ID: 1}},
+			[]Expenditure{{ID: 0}},
 		},
 	}
 	for _, tt := range tests {
@@ -128,7 +128,7 @@ func TestInMemoryDatabase_saveExpenditure(t *testing.T) {
 				Expenditures: tt.fields.Expenditures,
 				Settlements:  tt.fields.Settlements,
 			}
-			if err := db.SaveExpenditure(tt.args.expenditure); (err != nil) != tt.wantErr {
+			if _, err := db.SaveExpenditure(tt.args.expenditure); (err != nil) != tt.wantErr {
 				t.Errorf("SaveExpenditure() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			if !reflect.DeepEqual(db.Expenditures, tt.result) {

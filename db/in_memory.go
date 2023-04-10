@@ -8,19 +8,34 @@ type InMemoryDatabase struct {
 	Settlements  []Settlement
 }
 
-func (db *InMemoryDatabase) SavePerson(person Person) error {
+func (db *InMemoryDatabase) SavePerson(person Person) (int64, error) {
+	personId, err := db.getNextPersonID()
+	if err != nil {
+		return 0, err
+	}
+	person.ID = personId
 	db.Persons = append(db.Persons, person)
-	return nil
+	return person.ID, nil
 }
 
-func (db *InMemoryDatabase) SaveExpenditure(expenditure Expenditure) error {
+func (db *InMemoryDatabase) SaveExpenditure(expenditure Expenditure) (int64, error) {
+	expenditureId, err := db.getNextExpenditureID()
+	if err != nil {
+		return 0, err
+	}
+	expenditure.ID = expenditureId
 	db.Expenditures = append(db.Expenditures, expenditure)
-	return nil
+	return expenditure.ID, nil
 }
 
-func (db *InMemoryDatabase) SaveSettlement(settlement Settlement) error {
+func (db *InMemoryDatabase) SaveSettlement(settlement Settlement) (int64, error) {
+	settlementId, err := db.getNextSettlementID()
+	if err != nil {
+		return 0, err
+	}
+	settlement.ID = settlementId
 	db.Settlements = append(db.Settlements, settlement)
-	return nil
+	return settlement.ID, nil
 }
 
 func (db *InMemoryDatabase) GetPerson(id int64) (Person, error) {
@@ -60,4 +75,37 @@ func (db *InMemoryDatabase) GetAllExpenditures() ([]Expenditure, error) {
 
 func (db *InMemoryDatabase) GetAllSettlements() ([]Settlement, error) {
 	return db.Settlements, nil
+}
+
+func (db *InMemoryDatabase) getNextPersonID() (int64, error) {
+	var max int64 = 0
+	for _, person := range db.Persons {
+		if person.ID > max {
+			max = person.ID
+		}
+	}
+
+	return max, nil
+}
+
+func (db *InMemoryDatabase) getNextExpenditureID() (int64, error) {
+	var max int64 = 0
+	for _, expenditure := range db.Expenditures {
+		if expenditure.ID > max {
+			max = expenditure.ID
+		}
+	}
+
+	return max, nil
+}
+
+func (db *InMemoryDatabase) getNextSettlementID() (int64, error) {
+	var max int64 = 0
+	for _, settlement := range db.Settlements {
+		if settlement.ID > max {
+			max = settlement.ID
+		}
+	}
+
+	return max, nil
 }
