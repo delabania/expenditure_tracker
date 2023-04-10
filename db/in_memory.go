@@ -8,22 +8,22 @@ type InMemoryDatabase struct {
 	Settlements  []Settlement
 }
 
-func (db *InMemoryDatabase) savePerson(person Person) error {
+func (db *InMemoryDatabase) SavePerson(person Person) error {
 	db.Persons = append(db.Persons, person)
 	return nil
 }
 
-func (db *InMemoryDatabase) saveExpenditure(expenditure Expenditure) error {
+func (db *InMemoryDatabase) SaveExpenditure(expenditure Expenditure) error {
 	db.Expenditures = append(db.Expenditures, expenditure)
 	return nil
 }
 
-func (db *InMemoryDatabase) saveSettlement(settlement Settlement) error {
+func (db *InMemoryDatabase) SaveSettlement(settlement Settlement) error {
 	db.Settlements = append(db.Settlements, settlement)
 	return nil
 }
 
-func (db *InMemoryDatabase) getPerson(id int64) (Person, error) {
+func (db *InMemoryDatabase) GetPerson(id int64) (Person, error) {
 	for _, person := range db.Persons {
 		if person.ID == id {
 			return person, nil
@@ -32,7 +32,7 @@ func (db *InMemoryDatabase) getPerson(id int64) (Person, error) {
 	return Person{}, errors.New("person not found")
 }
 
-func (db *InMemoryDatabase) getExpenditure(id int64) (Expenditure, error) {
+func (db *InMemoryDatabase) GetExpenditure(id int64) (Expenditure, error) {
 	for _, expenditure := range db.Expenditures {
 		if expenditure.ID == id {
 			return expenditure, nil
@@ -41,7 +41,7 @@ func (db *InMemoryDatabase) getExpenditure(id int64) (Expenditure, error) {
 	return Expenditure{}, errors.New("expenditure not found")
 }
 
-func (db *InMemoryDatabase) getSettlement(id int64) (Settlement, error) {
+func (db *InMemoryDatabase) GetSettlement(id int64) (Settlement, error) {
 	for _, settlement := range db.Settlements {
 		if settlement.ID == id {
 			return settlement, nil
@@ -50,14 +50,14 @@ func (db *InMemoryDatabase) getSettlement(id int64) (Settlement, error) {
 	return Settlement{}, errors.New("settlement not found")
 }
 
-func (db *InMemoryDatabase) getAllPersons() ([]Person, error) {
+func (db *InMemoryDatabase) GetAllPersons() ([]Person, error) {
 	return db.Persons, nil
 }
 
-func (db *InMemoryDatabase) getAllExpenditures() ([]Expenditure, error) {
+func (db *InMemoryDatabase) GetAllExpenditures() ([]Expenditure, error) {
 	return db.Expenditures, nil
 }
 
-func (db *InMemoryDatabase) getAllSettlements() ([]Settlement, error) {
+func (db *InMemoryDatabase) GetAllSettlements() ([]Settlement, error) {
 	return db.Settlements, nil
 }

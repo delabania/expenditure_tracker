@@ -1,10 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"expenditure_tracker/db"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	router := gin.Default()
-	router.GET("/expenditures", GetExpenditures)
+	env = &Env{db: db.InMemoryDatabase()}
+	router.GET("/expenditures")
 
 	router.Run("localhost:8080")
 }

@@ -36,13 +36,13 @@ func TestInMemoryDatabase_getAllExpenditures(t *testing.T) {
 				Expenditures: tt.fields.Expenditures,
 				Settlements:  tt.fields.Settlements,
 			}
-			got, err := db.getAllExpenditures()
+			got, err := db.GetAllExpenditures()
 			if (err != nil) != tt.wantErr {
-				t.Errorf("getAllExpenditures() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetAllExpenditures() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getAllExpenditures() got = %v, want %v", got, tt.want)
+				t.Errorf("GetAllExpenditures() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -85,13 +85,13 @@ func TestInMemoryDatabase_getExpenditure(t *testing.T) {
 				Expenditures: tt.fields.Expenditures,
 				Settlements:  tt.fields.Settlements,
 			}
-			got, err := db.getExpenditure(tt.args.id)
+			got, err := db.GetExpenditure(tt.args.id)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("getExpenditure() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetExpenditure() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getExpenditure() got = %v, want %v", got, tt.want)
+				t.Errorf("GetExpenditure() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -128,11 +128,11 @@ func TestInMemoryDatabase_saveExpenditure(t *testing.T) {
 				Expenditures: tt.fields.Expenditures,
 				Settlements:  tt.fields.Settlements,
 			}
-			if err := db.saveExpenditure(tt.args.expenditure); (err != nil) != tt.wantErr {
-				t.Errorf("saveExpenditure() error = %v, wantErr %v", err, tt.wantErr)
+			if err := db.SaveExpenditure(tt.args.expenditure); (err != nil) != tt.wantErr {
+				t.Errorf("SaveExpenditure() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			if !reflect.DeepEqual(db.Expenditures, tt.result) {
-				t.Errorf("saveExpenditure() result = %v, want %v", db.Expenditures, tt.result)
+				t.Errorf("SaveExpenditure() result = %v, want %v", db.Expenditures, tt.result)
 			}
 		})
 	}

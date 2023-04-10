@@ -1,15 +1,20 @@
 package main
 
 import (
+	"expenditure_tracker/db"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-func AddExpenditure() {}
+type Env struct {
+	db db.Database
+}
 
-func AddSettlement() {}
+func (e *Env) GetExpenditures(c *gin.Context) {
+	// read all expenditures from db
+	// return them as json
 
-func GetExpenditures(c *gin.Context) {
+	e.db.GetAllExpenditures()
 	c.IndentedJSON(http.StatusOK, gin.H{})
 }
