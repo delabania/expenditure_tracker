@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import Expenditure from "./expenditures";
+import Expenditure from "./Expenditures";
 
 const App = () => {
     let expenditures = useState([])
