@@ -1,5 +1,9 @@
 import 'cirrus-ui';
 import React from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+
+import {faHomeAlt} from '@fortawesome/free-solid-svg-icons'
+
 
 class Header extends React.Component {
     render() {
@@ -16,7 +20,7 @@ class Header extends React.Component {
                         <div className="nav-item tex-center">
                             <a href="#">
                                 <span className="icon">
-                                    <i className="fa fa-home"></i>
+                                    <FontAwesomeIcon icon={faHomeAlt}/>
                                 </span>
                             </a>
                         </div>
