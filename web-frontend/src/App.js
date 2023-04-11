@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Expenditure from "./expenditures";
 
 const App = () => {
     let expenditures = useState([])
@@ -13,13 +14,18 @@ const App = () => {
     return (
         <div className="App">
             <h1>Expenditures</h1>
-            <ul>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Owner</th>
+                </tr>
                 {expenditures.map((expenditure) => (
-                    <li>
-                        {expenditure}
-                    </li>
+                    <Expenditure expenditure={expenditure}/>
                 ))}
-            </ul>
+            </table>
         </div>
     )
 }
