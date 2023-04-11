@@ -11,7 +11,7 @@ class Header extends React.Component {
             <div className="header header-fixed unselectable header-animated">
                 <div className="header-brand">
                     <div className="nav-item no-hover">
-                        <h6 className="title">Expenditure tracker</h6>
+                        <h6 className="title uppercase">Expenditure tracker</h6>
                     </div>
                     <div className="nav-item nav-btn" id="header-btn"><span/> <span/> <span/></div>
                 </div>

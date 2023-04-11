@@ -1,23 +1,52 @@
 import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShoppingBasket} from "@fortawesome/free-solid-svg-icons";
+
+
+class Expenditures extends React.Component {
+    render() {
+        return (
+            <table className={"table striped"}>
+                <thead>
+                <tr className={"uppercase"}>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Owner</th>
+                    <th>Amount</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <Expenditure/>
+                <Expenditure/>
+                <Expenditure/>
+                </tbody>
+            </table>
+        )
+    }
+}
 
 class Expenditure extends React.Component {
     render() {
         return (
-            <tr>
+            <tr className={"tex-centered"}>
                 <td>
                     2022-01-01
-                </td>
-                <td>
-                    Groceries
-                </td>
-                <td>
-                    100.00
                 </td>
                 <td>
                     Żabka - zakupy
                 </td>
                 <td>
+                    <FontAwesomeIcon icon={faShoppingBasket} color={"green"}/>
+                </td>
+                <td>
                     Przemo
+                </td>
+                <td>
+                    100.00
+                </td>
+                <td>
                 </td>
             </tr>
         )
@@ -25,5 +54,4 @@ class Expenditure extends React.Component {
 }
 
 
-
-export default Expenditure
+export {Expenditure, Expenditures}

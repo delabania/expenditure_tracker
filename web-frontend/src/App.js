@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import Expenditure from "./Expenditures";
+import {Expenditures} from "./Expenditures";
+import Header from "./Header";
 
 const App = () => {
     let expenditures = useState([])
@@ -13,19 +14,17 @@ const App = () => {
     }, [])
     return (
         <div className="App">
-            <h1>Expenditures</h1>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Owner</th>
-                </tr>
-                {expenditures.map((expenditure) => (
-                    <Expenditure expenditure={expenditure}/>
-                ))}
-            </table>
+            <div className={"row"}>
+                <Header/>
+            </div>
+            //todo: fix it
+            <div className="space space--lg"/>
+            <div className="space space--lg"/>
+            <div className={"row"}>
+                <div className={"col-6 offset-3"}>
+                    <Expenditures/>
+                </div>
+            </div>
         </div>
     )
 }
