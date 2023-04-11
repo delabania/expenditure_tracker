@@ -6,23 +6,29 @@ import {faShoppingBasket} from "@fortawesome/free-solid-svg-icons";
 class Expenditures extends React.Component {
     render() {
         return (
-            <table className={"table striped"}>
-                <thead>
-                <tr className={"uppercase"}>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Owner</th>
-                    <th>Amount</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <Expenditure/>
-                <Expenditure/>
-                <Expenditure/>
-                </tbody>
-            </table>
+            <div className={"row"}>
+                <h6>Expenditures</h6>
+                <table className={"table striped"}>
+                    <thead>
+                    <tr className={"uppercase"}>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Owner</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <Expenditure/>
+                    <Expenditure/>
+                    <Expenditure/>
+                    <Expenditure/>
+                    <Expenditure/>
+                    <Expenditure/>
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

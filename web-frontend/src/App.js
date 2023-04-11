@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import {Expenditures} from "./Expenditures";
+import {Expenditures} from "./expenditures/Expenditures";
 import Header from "./Header";
+import Summary from "./expenditures/Summary";
 
 const App = () => {
     let expenditures = useState([])
@@ -21,10 +22,22 @@ const App = () => {
             <div className="space space--lg"/>
             <div className="space space--lg"/>
             <div className={"row"}>
-                <div className={"col-6 offset-3"}>
+                <div className={"col-6 offset-2"}>
                     <Expenditures/>
+                    <div className={"row"}>
+                        <div className={"col-3 offset-9"}>
+                            <button className={"btn-layout btn-info btn--md btn--pilled py-1 px-2"}>Add expenditure</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div className={"row"}>
+                <div className={"col-6 offset-2"}>
+                    <Summary/>
+                </div>
+            </div>
+
         </div>
     )
 }
